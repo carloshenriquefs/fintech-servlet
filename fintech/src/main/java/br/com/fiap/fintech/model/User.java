@@ -2,6 +2,8 @@ package br.com.fiap.fintech.model;
 
 import java.time.LocalDate;
 
+import static br.com.fiap.fintech.utils.CriptografiaUtils.criptografar;
+
 public class User {
 
     private Long userId;
@@ -14,8 +16,32 @@ public class User {
     private String gender;
     private String position;
     private LocalDate dateBirth;
+    private Note note;
 
     public User() {
+    }
+
+    public User(Long userId, String username) {
+        this.userId = userId;
+        this.username = username;
+    }
+
+    public User(String email, String password) {
+        this.email = email;
+        setPassword(password);
+    }
+
+    public User(String username, String lastName, String email, String password, String address, String phone, String gender, String position, LocalDate dateBirth, Note note) {
+        this.username = username;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.phone = phone;
+        this.gender = gender;
+        this.position = position;
+        this.dateBirth = dateBirth;
+        this.note = note;
     }
 
     public User(String username, String lastName, String email, String password, String address, String phone,
@@ -32,7 +58,21 @@ public class User {
     }
 
     public User(Long userId, String username, String lastName, String email, String password, String address,
-                String phone, String gender, String position, LocalDate dateBirth) {
+                String phone, String gender, String position, LocalDate dateBirth, Note note) {
+        this.userId = userId;
+        this.username = username;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.phone = phone;
+        this.gender = gender;
+        this.position = position;
+        this.dateBirth = dateBirth;
+        this.note = note;
+    }
+
+    public User(Long userId, String username, String lastName, String email, String password, String address, String phone, String gender, String position, LocalDate dateBirth) {
         this.userId = userId;
         this.username = username;
         this.lastName = lastName;
@@ -82,7 +122,11 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        try {
+            this.password = criptografar(password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public String getAddress() {
@@ -123,5 +167,13 @@ public class User {
 
     public void setDateBirth(LocalDate dateBirth) {
         this.dateBirth = dateBirth;
+    }
+
+    public Note getNote() {
+        return note;
+    }
+
+    public void setNote(Note note) {
+        this.note = note;
     }
 }
