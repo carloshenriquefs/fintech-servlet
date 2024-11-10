@@ -14,7 +14,7 @@ public class AccountBuilder {
         this.code = code;
     }
 
-    public AccountBuilder  setUser(User user) {
+    public AccountBuilder setUser(User user) {
         this.user = user;
         return this;
     }
