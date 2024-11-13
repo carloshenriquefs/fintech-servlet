@@ -1,5 +1,6 @@
 package br.com.fiap.fintech.model.builder.user;
 
+import br.com.fiap.fintech.model.Note;
 import br.com.fiap.fintech.model.User;
 
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ public class UserBuilder {
     private String gender;
     private String position;
     private LocalDate date;
+    private Note note;
 
     public UserBuilder setId(Long id) {
         this.id = id;
@@ -67,7 +69,12 @@ public class UserBuilder {
         return this;
     }
 
+    public UserBuilder setNote(Note note) {
+        this.note = note;
+        return this;
+    }
+
     public User build() {
-        return new User(username, lastName, email, password, address, phone, gender, position, date);
+        return new User(username, lastName, email, password, address, phone, gender, position, date, note);
     }
 }
